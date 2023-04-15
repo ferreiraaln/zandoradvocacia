@@ -21,15 +21,42 @@
     <script type="text/javascript">
 
       function sendEmail() {
-          Email.send({
-            SecureToken : "4eaeba3a-3797-4c7d-8b28-0539ecc6baa8",
-            To : 'allan_f2008@hotmail.com',
-            From : "allanferreira573@gmail.com",
-            Subject: "Sending Email using javascript with SMTPJS",
-            Body: "<p></p>If you are reading this, dont forget to applaud Allan</p>",
-          }).then(function (message) {
-            console.log(message)
-          });
+
+          var name = document.getElementById('form-field-name');
+          var email = document.getElementById('form-field-field_email');
+          var number = document.getElementById('form-field-field_number');
+          var message = document.getElementById('form-field-field_message');
+
+          if (!name.value || !email.value || !email.value || !email.value) {
+            alert('Por favor, preencha todos os campos!');
+            event.preventDefault();
+          }else{
+            Email.send({
+              SecureToken : "4eaeba3a-3797-4c7d-8b28-0539ecc6baa8",
+              To : 'zandoralbino.advocacia@gmail.com',
+              From : "allanferreira573@gmail.com",
+              Subject: "Sending Email using javascript with SMTPJS",
+              Body: 
+              "<p>CONTATO DO SITE!!</p>"
+              +"<br><br>"
+              +"<p>Nome: "+name.value+"</p>"
+              +"<br><br>"
+              +"<p>Email: "+email.value+"</p>"
+              +"<br><br>"
+              +"<p>telefone: "+number.value+"</p>"
+              +"<br><br>"
+              +"<p>mensagem: "+message.value+"</p>"
+              +"<br><br>",
+            }).then(function (message) {
+              console.log(message)
+              name.value = "";
+              email.value = "";
+              number.value = "";
+              document.getElementById('form-field-field_message').value = "";
+              alert('Seu email foi enviado com sucesso. Em breve entrarei em contato!');
+              event.preventDefault();
+            });
+          }
       }
 
     </script>
@@ -733,13 +760,25 @@
       media="all"
     />
     <script
-      src="wp-includes/js/jquery/jquery.js?ver=3.6.1"
+      src="wp-includes/js/jquery/jquery.js"
       id="jquery-core-js"
     ></script>
     <script
-      src="wp-includes/js/jquery/jquery-migrate.js?ver=3.3.2"
+      src="wp-includes/js/jquery/jquery-migrate.js"
       id="jquery-migrate-js"
     ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="wp-includes/js/mask/mask.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+          $('#form-field-field_number').mask('(99) 9999-99999');
+        });
+    </script>
+
+
     <link
       rel="https://api.w.org/"
       href="wp-json/"
@@ -1255,9 +1294,7 @@
                       >
                         <div class="elementor-widget-container">
                           <p>
-                            Lorem Ipsum is simply dummy text of the printing and
-                            type setting industry. Lorem Ipsum has been the
-                            industry&#8217;s standard dummy text ever.
+                            Acreditamos na justiça e lutamos por sua vitória em cada caso.
                           </p>
                         </div>
                       </div>
@@ -1308,10 +1345,7 @@
                         data-widget_type="form.default"
                       >
                         <div class="elementor-widget-container">
-                          <form
-                            class="elementor-form"
-                          
-                            name="New Form"
+                          <form class="elementor-form" name="New Form"
                           >
                             <input type="hidden" name="post_id" value="50992" />
                             <input
@@ -1353,7 +1387,7 @@
                                   size="1"
                                   type="text"
                                   name="form_fields[field_d53b812]"
-                                  id="form-field-field_d53b812"
+                                  id="form-field-field_email"
                                   class="elementor-field elementor-size-lg elementor-field-textual"
                                   placeholder="Email"
                                 />
@@ -1365,7 +1399,7 @@
                                   size="1"
                                   type="email"
                                   name="form_fields[field_6749c70]"
-                                  id="form-field-field_6749c70"
+                                  id="form-field-field_number"
                                   class="elementor-field elementor-size-lg elementor-field-textual"
                                   placeholder="Seu Número"
                                 />
@@ -1376,7 +1410,7 @@
                                 <textarea
                                   class="elementor-field-textual elementor-field elementor-size-lg"
                                   name="form_fields[field_8b7e812]"
-                                  id="form-field-field_8b7e812"
+                                  id="form-field-field_message"
                                   rows="4"
                                   placeholder="mensagem"
                                 ></textarea>
@@ -1391,7 +1425,7 @@
                                   <span>
                                     <span class="elementor-button-icon"> </span>
                                     <span class="elementor-button-text"
-                                      >Submit</span
+                                      >Enviar</span
                                     >
                                   </span>
                                 </button>
@@ -1447,8 +1481,7 @@
                         Garantia de Transparência para o cliente
                       </h3>
                       <p class="elementor-image-box-description">
-                        Lorem Ipsum is simply dummy text printings and
-                        typesetting industrys.
+                        Transparência é a base de uma relação de confiança entre cliente e advogado.
                       </p>
                     </div>
                   </div>
@@ -1487,8 +1520,7 @@
                         Gestão Segura
                       </h3>
                       <p class="elementor-image-box-description">
-                        Lorem Ipsum is simply dummy text printings and
-                        typesetting industrys.
+                        Uma gestão segura é a chave para o sucesso na advocacia.
                       </p>
                     </div>
                   </div>
@@ -1527,8 +1559,7 @@
                         Suporte em tempo integral
                       </h3>
                       <p class="elementor-image-box-description">
-                        Lorem Ipsum is simply dummy text printings and
-                        typesetting industrys.
+                        Estou sempre ao seu lado, com suporte em tempo integral.
                       </p>
                     </div>
                   </div>
@@ -1727,7 +1758,7 @@
               >
                 <div class="elementor-widget-container">
                   <h6 class="elementor-heading-title elementor-size-default">
-                    SOu ESPECIALISTA EM
+                    SOU ESPECIALISTA EM
                   </h6>
                 </div>
               </div>
@@ -1751,9 +1782,7 @@
               >
                 <div class="elementor-widget-container">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and type
-                    setting industry. Lorem Ipsum has been the industry&#8217;s
-                    standard .
+                    Conheça minhas especialidades e proteja seus direitos.
                   </p>
                 </div>
               </div>
@@ -1816,8 +1845,7 @@
                           <h2
                             class="elementor-heading-title elementor-size-default"
                           >
-                            Lorem Ipsum is simply dummy texts printings and
-                            typesetting industrys.
+                            Seus direitos como consumidor não podem ser ignorados.
                           </h2>
                         </div>
                       </div>
@@ -1874,8 +1902,7 @@
                           <h2
                             class="elementor-heading-title elementor-size-default"
                           >
-                            Lorem Ipsum is simply dummy texts printings and
-                            typesetting industrys.
+                          Seu dinheiro é valioso. Proteja-o com a ajuda do Direito Bancário.
                           </h2>
                         </div>
                       </div>
@@ -1932,8 +1959,7 @@
                           <h2
                             class="elementor-heading-title elementor-size-default"
                           >
-                            Lorem Ipsum is simply dummy texts printings and
-                            typesetting industrys.
+                            Em questões de família e sucessões, a orientação jurídica pode ser a chave para a solução de problemas delicados.
                           </h2>
                         </div>
                       </div>
@@ -2000,8 +2026,7 @@
                           <h2
                             class="elementor-heading-title elementor-size-default"
                           >
-                            Lorem Ipsum is simply dummy texts printings and
-                            typesetting industrys.
+                          Não pague multas de trânsito injustas. Conheça seus direitos e recorra!
                           </h2>
                         </div>
                       </div>
@@ -2058,8 +2083,7 @@
                           <h2
                             class="elementor-heading-title elementor-size-default"
                           >
-                            Lorem Ipsum is simply dummy texts printings and
-                            typesetting industrys.
+                          Justiça é o alicerce do Direito Civil. Lute pelos seus direitos.
                           </h2>
                         </div>
                       </div>
@@ -2116,8 +2140,7 @@
                           <h2
                             class="elementor-heading-title elementor-size-default"
                           >
-                            Lorem Ipsum is simply dummy texts printings and
-                            typesetting industrys.
+                          Não deixe que as infrações de trânsito prejudiquem sua vida. Conheça seus direitos e defenda-se!
                           </h2>
                         </div>
                       </div>
@@ -2150,11 +2173,7 @@
                 data-element_type="widget"
                 data-widget_type="heading.default"
               >
-                <div class="elementor-widget-container">
-                  <h6 class="elementor-heading-title elementor-size-default">
-                    Escolha-me
-                  </h6>
-                </div>
+   
               </div>
               <div
                 class="elementor-element elementor-element-415c1f2 elementor-widget elementor-widget-heading"
@@ -2176,9 +2195,7 @@
               >
                 <div class="elementor-widget-container">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and type
-                    setting industry. Lorem Ipsum has been the industry&#8217;s
-                    standard .
+                    Conheça os motivos pelos quais nossos clientes confiam em nosso trabalho.
                   </p>
                 </div>
               </div>
@@ -2554,7 +2571,7 @@
             data-settings='{"background_background":"classic"}'
           >
             <div class="elementor-widget-wrap elementor-element-populated">
-              <div
+              <!-- <div
                 class="elementor-element elementor-element-07d8b5b elementor-widget elementor-widget-image"
                 data-id="07d8b5b"
                 data-element_type="widget"
@@ -2565,19 +2582,15 @@
                     decoding="async"
                     width="555"
                     height="555"
-                    src="wp-content/uploads/sites/4/2022/02/skills.png"
+                    src="wp-content/uploads/sites/4/2022/02/zandortoga.jpg"
                     class="attachment-full size-full"
                     alt=""
                     loading="lazy"
-                    srcset="
-                      wp-content/uploads/sites/4/2022/02/skills.png         555w,
-                      wp-content/uploads/sites/4/2022/02/skills-300x300.png 300w,
-                      wp-content/uploads/sites/4/2022/02/skills-150x150.png 150w
-                    "
+  
                     sizes="(max-width: 555px) 100vw, 555px"
                   />
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div
@@ -2618,9 +2631,7 @@
               >
                 <div class="elementor-widget-container">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and type
-                    setting ofi their industry. Lorem Ipsum has been the
-                    industry&#8217;s standard.
+                    Conheça as habilidades que me destacam como profissional do Direito.
                   </p>
                 </div>
               </div>
@@ -2631,7 +2642,7 @@
                 data-widget_type="progress.default"
               >
                 <div class="elementor-widget-container">
-                  <span class="elementor-title">Criminal Case</span>
+                  <span class="elementor-title">Direito Civil</span>
 
                   <div
                     class="elementor-progress-wrapper"
@@ -2655,7 +2666,7 @@
                 data-widget_type="progress.default"
               >
                 <div class="elementor-widget-container">
-                  <span class="elementor-title">Murder Case</span>
+                  <span class="elementor-title">Direito Bancário</span>
 
                   <div
                     class="elementor-progress-wrapper"
@@ -2679,7 +2690,7 @@
                 data-widget_type="progress.default"
               >
                 <div class="elementor-widget-container">
-                  <span class="elementor-title">Insurance Case</span>
+                  <span class="elementor-title">Direito do Consumidor</span>
 
                   <div
                     class="elementor-progress-wrapper"
@@ -2703,7 +2714,7 @@
                 data-widget_type="progress.default"
               >
                 <div class="elementor-widget-container">
-                  <span class="elementor-title">Real Estate Case</span>
+                  <span class="elementor-title">Direito de família e sucessões</span>
 
                   <div
                     class="elementor-progress-wrapper"
@@ -2727,7 +2738,7 @@
                 data-widget_type="progress.default"
               >
                 <div class="elementor-widget-container">
-                  <span class="elementor-title">Land & Home Case</span>
+                  <span class="elementor-title">Direito de trânsito/defesas e recursos de multas de trânsito</span>
 
                   <div
                     class="elementor-progress-wrapper"
@@ -2740,30 +2751,6 @@
                     <div class="elementor-progress-bar" data-max="94">
                       <span class="elementor-progress-text"></span>
                       <span class="elementor-progress-percentage">94%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-f954c27 elementor-widget elementor-widget-progress"
-                data-id="f954c27"
-                data-element_type="widget"
-                data-widget_type="progress.default"
-              >
-                <div class="elementor-widget-container">
-                  <span class="elementor-title">Health Care Case</span>
-
-                  <div
-                    class="elementor-progress-wrapper"
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-valuenow="84"
-                    aria-valuetext=""
-                  >
-                    <div class="elementor-progress-bar" data-max="84">
-                      <span class="elementor-progress-text"></span>
-                      <span class="elementor-progress-percentage">84%</span>
                     </div>
                   </div>
                 </div>
